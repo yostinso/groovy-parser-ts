@@ -4,13 +4,20 @@ import { GroovyParserVisitor } from "./parsers/GroovyParserVisitor";
 import { GroovyParserListener } from "./parsers/GroovyParserListener";
 import MinimalAstBuilder from "./ast/MinimalAstBuilder";
 import { GroovyParser } from "./parsers/GroovyParser";
+import ListOfStatements from "./ast/stmt/ListOfStatements";
+import MethodStatement from "./ast/stmt/MethodStatement";
 
-function createTree(text: string): any {
+function getStatements(text: string): ListOfStatements {
     const lexer = parseText(text);
     const tokenStream = new CommonTokenStream(lexer);
     const parser = new GroovyParser(tokenStream);
-    let astBuilder = new MinimalAstBuilder(lexer);
-    return astBuilder.visit(parser.compilationUnit());
+    let astBuilder = new MinimalAstBuilder();
+    let result = astBuilder.visit(parser.compilationUnit());
+    if (result instanceof ListOfStatements) {
+        return result;
+    } else {
+        throw new Error(`Unexpected result of parsing ${result}`);
+    }
 }
 
 function parseText(text: string): GroovyLexer {
@@ -34,11 +41,9 @@ interface MethodLocations {
 }
 
 function findMethods(text: string) {
-    const lexer = parseText(text);
-    const parser = new GroovyParser(new CommonTokenStream(lexer));
-    let astBuilder = new MinimalAstBuilder(lexer);
-    let ast = astBuilder.visit(parser.compilationUnit());
-    console.log(ast);
+    let statements = getStatements(text).statements;
+    let methods = statements.filter((s) => s instanceof MethodStatement);
+    console.log(methods);
 }
 
 export {
@@ -47,6 +52,6 @@ export {
     GroovyParserVisitor,
     GroovyParserListener,
     parseText,
-    createTree,
+    getStatements,
     findMethods
 }

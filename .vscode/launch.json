@@ -25,14 +25,14 @@
         {
             "type": "pwa-node",
             "request": "launch",
-            "name": "Parse Current File for functions",
+            "name": "Parse test file for functions",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/bin/antlr-groovy.ts",
             "args": [
                 "findMethods",
-                "${workspaceFolder}/test/debug.groovy"
+                "${workspaceFolder}/test/test.groovy"
             ],
             "outFiles": [
                 "${workspaceFolder}/**/*.js"

@@ -1,9 +1,19 @@
 import { ParserRuleContext } from "antlr4ts";
 import { AbstractParseTreeVisitor } from "antlr4ts/tree/AbstractParseTreeVisitor";
 import { ParseTree } from "antlr4ts/tree/ParseTree";
+import { TerminalNode } from "antlr4ts/tree/TerminalNode";
 import { GroovyParserVisitor } from "..";
 import { GroovyLangLexer } from "../GroovyLangLexer";
 import { ArgumentsContext, ClosureOrLambdaExpressionContext, CommandExpressionContext, EnhancedArgumentListElementContext, EnhancedArgumentListInParContext, ExpressionContext, IdentifierContext, IdentifierPrmrAltContext, MethodBodyContext, NamePartContext, PathElementContext, PathExpressionContext, PostfixExpressionContext } from "../parsers/GroovyParser";
+import ArgumentsStatement from "./stmt/ArgumentsStatement";
+import ArgumentStatement from "./stmt/ArgumentStatement";
+import ClosureContentsStatement from "./stmt/ClosureContentsStatement";
+import ClosureStatement from "./stmt/ClosureStatement";
+import EmptyStatement from "./stmt/EmptyStatement";
+import IdentifierStatement from "./stmt/IdentifierStatement";
+import ListOfStatements from "./stmt/ListOfStatements";
+import MethodStatement from "./stmt/MethodStatement";
+import Statement from "./stmt/Statement";
 
 interface GroovyParserContext extends ParserRuleContext {
     getMetaDataMap(): Map<any, any> | null;
@@ -43,25 +53,28 @@ function getMetaData(ctx: ParserRuleContext, key: string): any {
 
 export default class MinimalAstBuilder extends AbstractParseTreeVisitor<Statement|undefined> implements GroovyParserVisitor<any> {
     private inClosure: ClosureContentsStatement[] = [];
-    lexer: GroovyLangLexer;
     methods: {
         name: string,
         [key: string]: any
     }[] = [];
     private currentMethod: number = -1;
 
-    constructor(lexer: GroovyLangLexer) {
-        super();
-        this.lexer = lexer;
+    protected defaultResult(): Statement|undefined {
+        return new ListOfStatements();
     }
 
-    protected defaultResult(): Statement|undefined {
+    visitTerminal(node: TerminalNode) {
         return new EmptyStatement();
     }
 
-    aggregateResult(agg: ListOfStatements, next: Statement): ListOfStatements {
-        if (next) { agg.push(next); }
-        return agg;
+    aggregateResult(result: ListOfStatements, childResult: Statement): ListOfStatements {
+        if (childResult instanceof ListOfStatements) {
+            result.push(childResult);
+        } else if (childResult?.notEmpty) {
+            result = new ListOfStatements();
+            result.push(childResult);
+        }
+        return result;
     }
 
     visit(tree: ParseTree|undefined): Statement | undefined {
@@ -78,7 +91,7 @@ export default class MinimalAstBuilder extends AbstractParseTreeVisitor<Statemen
             if (this.inClosure.length > 0) {
                 this.inClosure[this.inClosure.length-1].push(baseExpr);
             }
-            console.log(`Got ${baseExpr?.text}`);
+            //console.log(`Got ${baseExpr?.toString()}`);
         }
         return baseExpr;
     }
@@ -108,10 +121,10 @@ export default class MinimalAstBuilder extends AbstractParseTreeVisitor<Statemen
             let stmt = this.createPathElement(e);
             if (stmt instanceof ClosureContentsStatement) {
                 elementName = getMetaData(ctx, "baseExprName");
-                ret = new ClosureStatement(elementName, stmt);
+                ret = new ClosureStatement(ctx.start.line, ctx.start.charPositionInLine, elementName, stmt);
             } else if (stmt instanceof ArgumentsStatement) {
                 elementName = getMetaData(ctx, "baseExprName");
-                ret = new MethodStatement(elementName, stmt);
+                ret = new MethodStatement(ctx.start.line, ctx.start.charPositionInLine, elementName, stmt);
             }
         });
 
@@ -158,7 +171,7 @@ export default class MinimalAstBuilder extends AbstractParseTreeVisitor<Statemen
         if (!closure) { return undefined; }
 
         let code = closure.blockStatementsOpt().text;
-        let stmt = new ClosureContentsStatement(code);
+        let stmt = new ClosureContentsStatement(ctx.start.line, ctx.start.charPositionInLine, code);
         this.inClosure.push(stmt);
         this.visit(closure.blockStatementsOpt().blockStatements());
         this.inClosure.pop();
@@ -196,9 +209,9 @@ export default class MinimalAstBuilder extends AbstractParseTreeVisitor<Statemen
         let value = this.visit(valueExpr)?.text || valueExpr.text || "?";
 
         if (name) {
-            return new ArgumentStatement(name, value);
+            return new ArgumentStatement(ctx.start.line, ctx.start.charPositionInLine, name, value);
         } else {
-            return new ArgumentStatement(value);
+            return new ArgumentStatement(ctx.start.line, ctx.start.charPositionInLine, value);
         }
     }
 
@@ -206,108 +219,6 @@ export default class MinimalAstBuilder extends AbstractParseTreeVisitor<Statemen
         return this.visitIdentifier(ctx.identifier());
     }
     visitIdentifier(ctx: IdentifierContext): IdentifierStatement {
-        return new IdentifierStatement(ctx.text);
+        return new IdentifierStatement(ctx.start.line, ctx.start.charPositionInLine, ctx.text);
     }
-}
-
-abstract class Statement {
-    get text() { return ""; }
-}
-
-class IdentifierStatement extends Statement {
-    name: string;
-    constructor(name: string) {
-        super();
-        this.name = name;
-    }
-    get text() { return this.name; }
-}
-
-class ArgumentStatement extends Statement {
-    name: string|undefined;
-    value: string;
-    constructor(name: string, value: string);
-    constructor(value: string);
-    constructor(name_or_value: string, value?: string) {
-        super();
-        if (value) {
-            this.name = name_or_value;
-            this.value = value;
-        } else {
-            this.value = name_or_value;
-        }
-    }
-    get text() {
-        if (this.name) { return `${this.name}: ${this.value}`; }
-        return this.value;
-    }
-}
-
-class ArgumentsStatement extends Statement {
-    args: ArgumentStatement[];
-    constructor();
-    constructor(args: ArgumentStatement[]);
-    constructor(args?: ArgumentStatement[]) {
-        super();
-        this.args = args || [];
-    }
-    get text() {
-        return this.args.map((a) => a.text).join(", ");
-    }
-    push(...args: ArgumentStatement[]) {
-        this.args.push(...args)
-    }
-}
-
-class MethodStatement extends IdentifierStatement {
-    args: ArgumentsStatement;
-    constructor(name: string, args: ArgumentsStatement) {
-        super(name);
-        this.args = args;
-    }
-    get text() {
-        return `${this.name}(${this.args.text})`;
-    }
-}
-
-class ClosureContentsStatement extends Statement {
-    contents: Statement[] = [];
-    code: string;
-    constructor(code: string);
-    constructor(code: string, contents: Statement[]);
-    constructor(code: string, contents?: Statement[]) {
-        super();
-        this.code = code;
-        if (contents) {
-            this.contents = contents;
-        }
-    }
-    push(statement: Statement) {
-        this.contents.push(statement);
-    }
-    get text() {
-        return `{ ${this.contents.map((c) => c.text).join("; ") || this.code } }`;
-    }
-}
-
-class ClosureStatement extends IdentifierStatement {
-    _contents: ClosureContentsStatement;
-    constructor(name: string, contents: ClosureContentsStatement) {
-        super(name);
-        this._contents = contents;
-    }
-    get contents() { return this._contents.contents; }
-    get code() { return this._contents.code; }
-    get text() { return `${this.name} ${this._contents.text}`}
-}
-
-class ListOfStatements extends Statement {
-    statements: Statement[] = [];
-    push(...statements: Statement[]) {
-        this.statements.push(...statements);
-    }
-}
-
-class EmptyStatement extends Statement {
-    
 }
