@@ -8,16 +8,16 @@
   "description": "Parser for Groovy based on Parrot and antlr4ts",
   "main": "out/index.js",
   "scripts": {
-    "generateGrammar": "antlr4ts -lib ./parsers -o ./parsers -Xexact-output-dir ./antlr/GroovyLexer.g4 ./antlr/GroovyParser.g4"
+    "generateGrammar": "antlr4ts -visitor -lib ./parsers -o ./parsers -Xexact-output-dir ./antlr/GroovyLexer.g4 ./antlr/GroovyParser.g4"
   },
   "dependencies": {
     "@types/bintrees": "^1.0.2",
     "antlr4ts": "^0.5.0-alpha.4",
     "bintrees": "^1.0.2",
-    "commander": "^7.0.0",
     "denque": "^1.5.0"
   },
   "devDependencies": {
+    "commander": "^7.0.0",
     "@types/node": "^14.14.22",
     "antlr4ts-cli": "^0.5.0-alpha.4",
     "typescript": "^4.1.3"

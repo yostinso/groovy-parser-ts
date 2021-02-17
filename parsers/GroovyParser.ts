@@ -54,6 +54,8 @@ import { VocabularyImpl } from "antlr4ts/VocabularyImpl";
 import * as Utils from "antlr4ts/misc/Utils";
 
 import { GroovyParserListener } from "./GroovyParserListener";
+import { GroovyParserVisitor } from "./GroovyParserVisitor";
+
 
 export class GroovyParser extends Parser {
 	public static readonly StringLiteral = 1;
@@ -10287,6 +10289,14 @@ export class CompilationUnitContext extends GroovyParserRuleContext {
 			listener.exitCompilationUnit(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitCompilationUnit) {
+			return visitor.visitCompilationUnit(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -10326,6 +10336,14 @@ export class ScriptStatementsContext extends GroovyParserRuleContext {
 			listener.exitScriptStatements(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitScriptStatements) {
+			return visitor.visitScriptStatements(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -10359,6 +10377,14 @@ export class ScriptStatementContext extends GroovyParserRuleContext {
 			listener.exitScriptStatement(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitScriptStatement) {
+			return visitor.visitScriptStatement(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -10385,6 +10411,14 @@ export class PackageDeclarationContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitPackageDeclaration) {
 			listener.exitPackageDeclaration(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitPackageDeclaration) {
+			return visitor.visitPackageDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -10423,6 +10457,14 @@ export class ImportDeclarationContext extends GroovyParserRuleContext {
 			listener.exitImportDeclaration(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitImportDeclaration) {
+			return visitor.visitImportDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -10448,6 +10490,14 @@ export class TypeDeclarationContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitTypeDeclaration) {
 			listener.exitTypeDeclaration(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitTypeDeclaration) {
+			return visitor.visitTypeDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -10481,6 +10531,14 @@ export class ModifierContext extends GroovyParserRuleContext {
 			listener.exitModifier(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitModifier) {
+			return visitor.visitModifier(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -10506,6 +10564,14 @@ export class ModifiersOptContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitModifiersOpt) {
 			listener.exitModifiersOpt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitModifiersOpt) {
+			return visitor.visitModifiersOpt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -10547,6 +10613,14 @@ export class ModifiersContext extends GroovyParserRuleContext {
 			listener.exitModifiers(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitModifiers) {
+			return visitor.visitModifiers(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -10578,6 +10652,14 @@ export class ClassOrInterfaceModifiersOptContext extends GroovyParserRuleContext
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitClassOrInterfaceModifiersOpt) {
 			listener.exitClassOrInterfaceModifiersOpt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitClassOrInterfaceModifiersOpt) {
+			return visitor.visitClassOrInterfaceModifiersOpt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -10619,6 +10701,14 @@ export class ClassOrInterfaceModifiersContext extends GroovyParserRuleContext {
 			listener.exitClassOrInterfaceModifiers(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitClassOrInterfaceModifiers) {
+			return visitor.visitClassOrInterfaceModifiers(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -10650,6 +10740,14 @@ export class ClassOrInterfaceModifierContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitClassOrInterfaceModifier) {
 			listener.exitClassOrInterfaceModifier(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitClassOrInterfaceModifier) {
+			return visitor.visitClassOrInterfaceModifier(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -10686,6 +10784,14 @@ export class VariableModifierContext extends GroovyParserRuleContext {
 			listener.exitVariableModifier(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitVariableModifier) {
+			return visitor.visitVariableModifier(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -10711,6 +10817,14 @@ export class VariableModifiersOptContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitVariableModifiersOpt) {
 			listener.exitVariableModifiersOpt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitVariableModifiersOpt) {
+			return visitor.visitVariableModifiersOpt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -10750,6 +10864,14 @@ export class VariableModifiersContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitVariableModifiers) {
 			listener.exitVariableModifiers(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitVariableModifiers) {
+			return visitor.visitVariableModifiers(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -10802,6 +10924,14 @@ export class TypeParametersContext extends GroovyParserRuleContext {
 			listener.exitTypeParameters(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitTypeParameters) {
+			return visitor.visitTypeParameters(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -10831,6 +10961,14 @@ export class TypeParameterContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitTypeParameter) {
 			listener.exitTypeParameter(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitTypeParameter) {
+			return visitor.visitTypeParameter(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -10881,6 +11019,14 @@ export class TypeBoundContext extends GroovyParserRuleContext {
 			listener.exitTypeBound(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitTypeBound) {
+			return visitor.visitTypeBound(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -10927,6 +11073,14 @@ export class TypeListContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitTypeList) {
 			listener.exitTypeList(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitTypeList) {
+			return visitor.visitTypeList(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -10987,6 +11141,14 @@ export class ClassDeclarationContext extends GroovyParserRuleContext {
 			listener.exitClassDeclaration(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitClassDeclaration) {
+			return visitor.visitClassDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11043,6 +11205,14 @@ export class ClassBodyContext extends GroovyParserRuleContext {
 			listener.exitClassBody(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitClassBody) {
+			return visitor.visitClassBody(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11091,6 +11261,14 @@ export class EnumConstantsContext extends GroovyParserRuleContext {
 			listener.exitEnumConstants(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitEnumConstants) {
+			return visitor.visitEnumConstants(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11122,6 +11300,14 @@ export class EnumConstantContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitEnumConstant) {
 			listener.exitEnumConstant(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitEnumConstant) {
+			return visitor.visitEnumConstant(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -11157,6 +11343,14 @@ export class ClassBodyDeclarationContext extends GroovyParserRuleContext {
 			listener.exitClassBodyDeclaration(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitClassBodyDeclaration) {
+			return visitor.visitClassBodyDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11190,6 +11384,14 @@ export class MemberDeclarationContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitMemberDeclaration) {
 			listener.exitMemberDeclaration(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitMemberDeclaration) {
+			return visitor.visitMemberDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -11252,6 +11454,14 @@ export class MethodDeclarationContext extends GroovyParserRuleContext {
 			listener.exitMethodDeclaration(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitMethodDeclaration) {
+			return visitor.visitMethodDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11277,6 +11487,14 @@ export class MethodNameContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitMethodName) {
 			listener.exitMethodName(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitMethodName) {
+			return visitor.visitMethodName(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -11306,6 +11524,14 @@ export class ReturnTypeContext extends GroovyParserRuleContext {
 			listener.exitReturnType(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitReturnType) {
+			return visitor.visitReturnType(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11328,6 +11554,14 @@ export class FieldDeclarationContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitFieldDeclaration) {
 			listener.exitFieldDeclaration(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitFieldDeclaration) {
+			return visitor.visitFieldDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -11378,6 +11612,14 @@ export class VariableDeclaratorsContext extends GroovyParserRuleContext {
 			listener.exitVariableDeclarators(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitVariableDeclarators) {
+			return visitor.visitVariableDeclarators(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11415,6 +11657,14 @@ export class VariableDeclaratorContext extends GroovyParserRuleContext {
 			listener.exitVariableDeclarator(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitVariableDeclarator) {
+			return visitor.visitVariableDeclarator(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11439,6 +11689,14 @@ export class VariableDeclaratorIdContext extends GroovyParserRuleContext {
 			listener.exitVariableDeclaratorId(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitVariableDeclaratorId) {
+			return visitor.visitVariableDeclaratorId(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11461,6 +11719,14 @@ export class VariableInitializerContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitVariableInitializer) {
 			listener.exitVariableInitializer(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitVariableInitializer) {
+			return visitor.visitVariableInitializer(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -11511,6 +11777,14 @@ export class VariableInitializersContext extends GroovyParserRuleContext {
 			listener.exitVariableInitializers(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitVariableInitializers) {
+			return visitor.visitVariableInitializers(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11559,6 +11833,14 @@ export class EmptyDimsContext extends GroovyParserRuleContext {
 			listener.exitEmptyDims(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitEmptyDims) {
+			return visitor.visitEmptyDims(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11581,6 +11863,14 @@ export class EmptyDimsOptContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitEmptyDimsOpt) {
 			listener.exitEmptyDimsOpt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitEmptyDimsOpt) {
+			return visitor.visitEmptyDimsOpt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -11619,6 +11909,14 @@ export class TypeContext extends GroovyParserRuleContext {
 			listener.exitType(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitType) {
+			return visitor.visitType(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11649,6 +11947,14 @@ export class ClassOrInterfaceTypeContext extends GroovyParserRuleContext {
 			listener.exitClassOrInterfaceType(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitClassOrInterfaceType) {
+			return visitor.visitClassOrInterfaceType(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11673,6 +11979,14 @@ export class PrimitiveTypeContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitPrimitiveType) {
 			listener.exitPrimitiveType(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitPrimitiveType) {
+			return visitor.visitPrimitiveType(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -11725,6 +12039,14 @@ export class TypeArgumentsContext extends GroovyParserRuleContext {
 			listener.exitTypeArguments(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitTypeArguments) {
+			return visitor.visitTypeArguments(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11758,6 +12080,14 @@ export class TypeArgumentContext extends GroovyParserRuleContext {
 			listener.exitTypeArgument(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitTypeArgument) {
+			return visitor.visitTypeArgument(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11783,6 +12113,14 @@ export class AnnotatedQualifiedClassNameContext extends GroovyParserRuleContext 
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitAnnotatedQualifiedClassName) {
 			listener.exitAnnotatedQualifiedClassName(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitAnnotatedQualifiedClassName) {
+			return visitor.visitAnnotatedQualifiedClassName(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -11833,6 +12171,14 @@ export class QualifiedClassNameListContext extends GroovyParserRuleContext {
 			listener.exitQualifiedClassNameList(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitQualifiedClassNameList) {
+			return visitor.visitQualifiedClassNameList(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11859,6 +12205,14 @@ export class FormalParametersContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitFormalParameters) {
 			listener.exitFormalParameters(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitFormalParameters) {
+			return visitor.visitFormalParameters(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -11912,6 +12266,14 @@ export class FormalParameterListContext extends GroovyParserRuleContext {
 			listener.exitFormalParameterList(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitFormalParameterList) {
+			return visitor.visitFormalParameterList(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -11935,6 +12297,14 @@ export class ThisFormalParameterContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitThisFormalParameter) {
 			listener.exitThisFormalParameter(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitThisFormalParameter) {
+			return visitor.visitThisFormalParameter(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -11981,6 +12351,14 @@ export class FormalParameterContext extends GroovyParserRuleContext {
 			listener.exitFormalParameter(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitFormalParameter) {
+			return visitor.visitFormalParameter(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12003,6 +12381,14 @@ export class MethodBodyContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitMethodBody) {
 			listener.exitMethodBody(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitMethodBody) {
+			return visitor.visitMethodBody(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -12044,6 +12430,14 @@ export class QualifiedNameContext extends GroovyParserRuleContext {
 			listener.exitQualifiedName(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitQualifiedName) {
+			return visitor.visitQualifiedName(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12070,6 +12464,14 @@ export class QualifiedNameElementContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitQualifiedNameElement) {
 			listener.exitQualifiedNameElement(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitQualifiedNameElement) {
+			return visitor.visitQualifiedNameElement(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -12111,6 +12513,14 @@ export class QualifiedNameElementsContext extends GroovyParserRuleContext {
 			listener.exitQualifiedNameElements(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitQualifiedNameElements) {
+			return visitor.visitQualifiedNameElements(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12136,6 +12546,14 @@ export class QualifiedClassNameContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitQualifiedClassName) {
 			listener.exitQualifiedClassName(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitQualifiedClassName) {
+			return visitor.visitQualifiedClassName(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -12180,6 +12598,14 @@ export class QualifiedStandardClassNameContext extends GroovyParserRuleContext {
 			listener.exitQualifiedStandardClassName(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitQualifiedStandardClassName) {
+			return visitor.visitQualifiedStandardClassName(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12211,6 +12637,14 @@ export class IntegerLiteralAltContext extends LiteralContext {
 			listener.exitIntegerLiteralAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitIntegerLiteralAlt) {
+			return visitor.visitIntegerLiteralAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class FloatingPointLiteralAltContext extends LiteralContext {
 	public FloatingPointLiteral(): TerminalNode { return this.getToken(GroovyParser.FloatingPointLiteral, 0); }
@@ -12228,6 +12662,14 @@ export class FloatingPointLiteralAltContext extends LiteralContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitFloatingPointLiteralAlt) {
 			listener.exitFloatingPointLiteralAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitFloatingPointLiteralAlt) {
+			return visitor.visitFloatingPointLiteralAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -12251,6 +12693,14 @@ export class StringLiteralAltContext extends LiteralContext {
 			listener.exitStringLiteralAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitStringLiteralAlt) {
+			return visitor.visitStringLiteralAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class BooleanLiteralAltContext extends LiteralContext {
 	public BooleanLiteral(): TerminalNode { return this.getToken(GroovyParser.BooleanLiteral, 0); }
@@ -12270,6 +12720,14 @@ export class BooleanLiteralAltContext extends LiteralContext {
 			listener.exitBooleanLiteralAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitBooleanLiteralAlt) {
+			return visitor.visitBooleanLiteralAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class NullLiteralAltContext extends LiteralContext {
 	public NullLiteral(): TerminalNode { return this.getToken(GroovyParser.NullLiteral, 0); }
@@ -12287,6 +12745,14 @@ export class NullLiteralAltContext extends LiteralContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitNullLiteralAlt) {
 			listener.exitNullLiteralAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitNullLiteralAlt) {
+			return visitor.visitNullLiteralAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -12330,6 +12796,14 @@ export class GstringContext extends GroovyParserRuleContext {
 			listener.exitGstring(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitGstring) {
+			return visitor.visitGstring(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12355,6 +12829,14 @@ export class GstringValueContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitGstringValue) {
 			listener.exitGstringValue(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitGstringValue) {
+			return visitor.visitGstringValue(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -12388,6 +12870,14 @@ export class GstringPathContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitGstringPath) {
 			listener.exitGstringPath(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitGstringPath) {
+			return visitor.visitGstringPath(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -12429,6 +12919,14 @@ export class StandardLambdaExpressionContext extends GroovyParserRuleContext {
 			listener.exitStandardLambdaExpression(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitStandardLambdaExpression) {
+			return visitor.visitStandardLambdaExpression(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12458,6 +12956,14 @@ export class StandardLambdaParametersContext extends GroovyParserRuleContext {
 			listener.exitStandardLambdaParameters(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitStandardLambdaParameters) {
+			return visitor.visitStandardLambdaParameters(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12483,6 +12989,14 @@ export class LambdaBodyContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitLambdaBody) {
 			listener.exitLambdaBody(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitLambdaBody) {
+			return visitor.visitLambdaBody(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -12527,6 +13041,14 @@ export class ClosureContext extends GroovyParserRuleContext {
 			listener.exitClosure(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitClosure) {
+			return visitor.visitClosure(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12554,6 +13076,14 @@ export class ClosureOrLambdaExpressionContext extends GroovyParserRuleContext {
 			listener.exitClosureOrLambdaExpression(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitClosureOrLambdaExpression) {
+			return visitor.visitClosureOrLambdaExpression(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12576,6 +13106,14 @@ export class BlockStatementsOptContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitBlockStatementsOpt) {
 			listener.exitBlockStatementsOpt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitBlockStatementsOpt) {
+			return visitor.visitBlockStatementsOpt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -12617,6 +13155,14 @@ export class BlockStatementsContext extends GroovyParserRuleContext {
 			listener.exitBlockStatements(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitBlockStatements) {
+			return visitor.visitBlockStatements(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12656,6 +13202,14 @@ export class AnnotationsOptContext extends GroovyParserRuleContext {
 			listener.exitAnnotationsOpt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitAnnotationsOpt) {
+			return visitor.visitAnnotationsOpt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12691,6 +13245,14 @@ export class AnnotationContext extends GroovyParserRuleContext {
 			listener.exitAnnotation(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitAnnotation) {
+			return visitor.visitAnnotation(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12718,6 +13280,14 @@ export class ElementValuesContext extends GroovyParserRuleContext {
 			listener.exitElementValues(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitElementValues) {
+			return visitor.visitElementValues(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12740,6 +13310,14 @@ export class AnnotationNameContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitAnnotationName) {
 			listener.exitAnnotationName(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitAnnotationName) {
+			return visitor.visitAnnotationName(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -12781,6 +13359,14 @@ export class ElementValuePairsContext extends GroovyParserRuleContext {
 			listener.exitElementValuePairs(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitElementValuePairs) {
+			return visitor.visitElementValuePairs(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12818,6 +13404,14 @@ export class ElementValuePairContext extends GroovyParserRuleContext {
 			listener.exitElementValuePair(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitElementValuePair) {
+			return visitor.visitElementValuePair(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12843,6 +13437,14 @@ export class ElementValuePairNameContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitElementValuePairName) {
 			listener.exitElementValuePairName(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitElementValuePairName) {
+			return visitor.visitElementValuePairName(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -12873,6 +13475,14 @@ export class ElementValueContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitElementValue) {
 			listener.exitElementValue(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitElementValue) {
+			return visitor.visitElementValue(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -12916,6 +13526,14 @@ export class ElementValueArrayInitializerContext extends GroovyParserRuleContext
 			listener.exitElementValueArrayInitializer(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitElementValueArrayInitializer) {
+			return visitor.visitElementValueArrayInitializer(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12945,6 +13563,14 @@ export class BlockContext extends GroovyParserRuleContext {
 			listener.exitBlock(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitBlock) {
+			return visitor.visitBlock(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12972,6 +13598,14 @@ export class BlockStatementContext extends GroovyParserRuleContext {
 			listener.exitBlockStatement(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitBlockStatement) {
+			return visitor.visitBlockStatement(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -12994,6 +13628,14 @@ export class LocalVariableDeclarationContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitLocalVariableDeclaration) {
 			listener.exitLocalVariableDeclaration(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitLocalVariableDeclaration) {
+			return visitor.visitLocalVariableDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -13044,6 +13686,14 @@ export class VariableDeclarationContext extends GroovyParserRuleContext {
 			listener.exitVariableDeclaration(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitVariableDeclaration) {
+			return visitor.visitVariableDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -13087,6 +13737,14 @@ export class TypeNamePairsContext extends GroovyParserRuleContext {
 			listener.exitTypeNamePairs(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitTypeNamePairs) {
+			return visitor.visitTypeNamePairs(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -13112,6 +13770,14 @@ export class TypeNamePairContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitTypeNamePair) {
 			listener.exitTypeNamePair(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitTypeNamePair) {
+			return visitor.visitTypeNamePair(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -13157,6 +13823,14 @@ export class VariableNamesContext extends GroovyParserRuleContext {
 			listener.exitVariableNames(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitVariableNames) {
+			return visitor.visitVariableNames(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -13182,6 +13856,14 @@ export class ConditionalStatementContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitConditionalStatement) {
 			listener.exitConditionalStatement(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitConditionalStatement) {
+			return visitor.visitConditionalStatement(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -13233,6 +13915,14 @@ export class IfElseStatementContext extends GroovyParserRuleContext {
 			listener.exitIfElseStatement(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitIfElseStatement) {
+			return visitor.visitIfElseStatement(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -13276,6 +13966,14 @@ export class SwitchStatementContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitSwitchStatement) {
 			listener.exitSwitchStatement(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitSwitchStatement) {
+			return visitor.visitSwitchStatement(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -13322,6 +14020,14 @@ export class ForStmtAltContext extends LoopStatementContext {
 			listener.exitForStmtAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitForStmtAlt) {
+			return visitor.visitForStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class WhileStmtAltContext extends LoopStatementContext {
 	public WHILE(): TerminalNode { return this.getToken(GroovyParser.WHILE, 0); }
@@ -13348,6 +14054,14 @@ export class WhileStmtAltContext extends LoopStatementContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitWhileStmtAlt) {
 			listener.exitWhileStmtAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitWhileStmtAlt) {
+			return visitor.visitWhileStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -13385,6 +14099,14 @@ export class DoWhileStmtAltContext extends LoopStatementContext {
 			listener.exitDoWhileStmtAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitDoWhileStmtAlt) {
+			return visitor.visitDoWhileStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -13410,6 +14132,14 @@ export class ContinueStatementContext extends GroovyParserRuleContext {
 			listener.exitContinueStatement(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitContinueStatement) {
+			return visitor.visitContinueStatement(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -13433,6 +14163,14 @@ export class BreakStatementContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitBreakStatement) {
 			listener.exitBreakStatement(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitBreakStatement) {
+			return visitor.visitBreakStatement(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -13484,6 +14222,14 @@ export class TryCatchStatementContext extends GroovyParserRuleContext {
 			listener.exitTryCatchStatement(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitTryCatchStatement) {
+			return visitor.visitTryCatchStatement(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -13528,6 +14274,14 @@ export class AssertStatementContext extends GroovyParserRuleContext {
 			listener.exitAssertStatement(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitAssertStatement) {
+			return visitor.visitAssertStatement(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -13561,6 +14315,14 @@ export class BlockStmtAltContext extends StatementContext {
 			listener.exitBlockStmtAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitBlockStmtAlt) {
+			return visitor.visitBlockStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class ConditionalStmtAltContext extends StatementContext {
 	public conditionalStatement(): ConditionalStatementContext {
@@ -13580,6 +14342,14 @@ export class ConditionalStmtAltContext extends StatementContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitConditionalStmtAlt) {
 			listener.exitConditionalStmtAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitConditionalStmtAlt) {
+			return visitor.visitConditionalStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -13603,6 +14373,14 @@ export class LoopStmtAltContext extends StatementContext {
 			listener.exitLoopStmtAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitLoopStmtAlt) {
+			return visitor.visitLoopStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class TryCatchStmtAltContext extends StatementContext {
 	public tryCatchStatement(): TryCatchStatementContext {
@@ -13622,6 +14400,14 @@ export class TryCatchStmtAltContext extends StatementContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitTryCatchStmtAlt) {
 			listener.exitTryCatchStmtAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitTryCatchStmtAlt) {
+			return visitor.visitTryCatchStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -13652,6 +14438,14 @@ export class SynchronizedStmtAltContext extends StatementContext {
 			listener.exitSynchronizedStmtAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitSynchronizedStmtAlt) {
+			return visitor.visitSynchronizedStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class ReturnStmtAltContext extends StatementContext {
 	public RETURN(): TerminalNode { return this.getToken(GroovyParser.RETURN, 0); }
@@ -13672,6 +14466,14 @@ export class ReturnStmtAltContext extends StatementContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitReturnStmtAlt) {
 			listener.exitReturnStmtAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitReturnStmtAlt) {
+			return visitor.visitReturnStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -13696,6 +14498,14 @@ export class ThrowStmtAltContext extends StatementContext {
 			listener.exitThrowStmtAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitThrowStmtAlt) {
+			return visitor.visitThrowStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class BreakStmtAltContext extends StatementContext {
 	public breakStatement(): BreakStatementContext {
@@ -13717,6 +14527,14 @@ export class BreakStmtAltContext extends StatementContext {
 			listener.exitBreakStmtAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitBreakStmtAlt) {
+			return visitor.visitBreakStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class ContinueStmtAltContext extends StatementContext {
 	public continueStatement(): ContinueStatementContext {
@@ -13736,6 +14554,14 @@ export class ContinueStmtAltContext extends StatementContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitContinueStmtAlt) {
 			listener.exitContinueStmtAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitContinueStmtAlt) {
+			return visitor.visitContinueStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -13766,6 +14592,14 @@ export class LabeledStmtAltContext extends StatementContext {
 			listener.exitLabeledStmtAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitLabeledStmtAlt) {
+			return visitor.visitLabeledStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class AssertStmtAltContext extends StatementContext {
 	public assertStatement(): AssertStatementContext {
@@ -13785,6 +14619,14 @@ export class AssertStmtAltContext extends StatementContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitAssertStmtAlt) {
 			listener.exitAssertStmtAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitAssertStmtAlt) {
+			return visitor.visitAssertStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -13808,6 +14650,14 @@ export class LocalVariableDeclarationStmtAltContext extends StatementContext {
 			listener.exitLocalVariableDeclarationStmtAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitLocalVariableDeclarationStmtAlt) {
+			return visitor.visitLocalVariableDeclarationStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class ExpressionStmtAltContext extends StatementContext {
 	public statementExpression(): StatementExpressionContext {
@@ -13829,6 +14679,14 @@ export class ExpressionStmtAltContext extends StatementContext {
 			listener.exitExpressionStmtAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitExpressionStmtAlt) {
+			return visitor.visitExpressionStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class EmptyStmtAltContext extends StatementContext {
 	public SEMI(): TerminalNode { return this.getToken(GroovyParser.SEMI, 0); }
@@ -13846,6 +14704,14 @@ export class EmptyStmtAltContext extends StatementContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitEmptyStmtAlt) {
 			listener.exitEmptyStmtAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitEmptyStmtAlt) {
+			return visitor.visitEmptyStmtAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -13889,6 +14755,14 @@ export class CatchClauseContext extends GroovyParserRuleContext {
 			listener.exitCatchClause(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitCatchClause) {
+			return visitor.visitCatchClause(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -13928,6 +14802,14 @@ export class CatchTypeContext extends GroovyParserRuleContext {
 			listener.exitCatchType(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitCatchType) {
+			return visitor.visitCatchType(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -13954,6 +14836,14 @@ export class FinallyBlockContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitFinallyBlock) {
 			listener.exitFinallyBlock(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitFinallyBlock) {
+			return visitor.visitFinallyBlock(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -13988,6 +14878,14 @@ export class ResourcesContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitResources) {
 			listener.exitResources(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitResources) {
+			return visitor.visitResources(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14029,6 +14927,14 @@ export class ResourceListContext extends GroovyParserRuleContext {
 			listener.exitResourceList(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitResourceList) {
+			return visitor.visitResourceList(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -14054,6 +14960,14 @@ export class ResourceContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitResource) {
 			listener.exitResource(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitResource) {
+			return visitor.visitResource(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14098,6 +15012,14 @@ export class SwitchBlockStatementGroupContext extends GroovyParserRuleContext {
 			listener.exitSwitchBlockStatementGroup(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitSwitchBlockStatementGroup) {
+			return visitor.visitSwitchBlockStatementGroup(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -14125,6 +15047,14 @@ export class SwitchLabelContext extends GroovyParserRuleContext {
 			listener.exitSwitchLabel(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitSwitchLabel) {
+			return visitor.visitSwitchLabel(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -14150,6 +15080,14 @@ export class ForControlContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitForControl) {
 			listener.exitForControl(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitForControl) {
+			return visitor.visitForControl(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14185,6 +15123,14 @@ export class EnhancedForControlContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitEnhancedForControl) {
 			listener.exitEnhancedForControl(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitEnhancedForControl) {
+			return visitor.visitEnhancedForControl(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14226,6 +15172,14 @@ export class ClassicalForControlContext extends GroovyParserRuleContext {
 			listener.exitClassicalForControl(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitClassicalForControl) {
+			return visitor.visitClassicalForControl(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -14253,6 +15207,14 @@ export class ForInitContext extends GroovyParserRuleContext {
 			listener.exitForInit(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitForInit) {
+			return visitor.visitForInit(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -14275,6 +15237,14 @@ export class ForUpdateContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitForUpdate) {
 			listener.exitForUpdate(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitForUpdate) {
+			return visitor.visitForUpdate(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14305,6 +15275,14 @@ export class CastParExpressionContext extends GroovyParserRuleContext {
 			listener.exitCastParExpression(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitCastParExpression) {
+			return visitor.visitCastParExpression(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -14327,6 +15305,14 @@ export class ParExpressionContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitParExpression) {
 			listener.exitParExpression(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitParExpression) {
+			return visitor.visitParExpression(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14355,6 +15341,14 @@ export class ExpressionInParContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitExpressionInPar) {
 			listener.exitExpressionInPar(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitExpressionInPar) {
+			return visitor.visitExpressionInPar(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14398,6 +15392,14 @@ export class ExpressionListContext extends GroovyParserRuleContext {
 			listener.exitExpressionList(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitExpressionList) {
+			return visitor.visitExpressionList(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -14425,6 +15427,14 @@ export class ExpressionListElementContext extends GroovyParserRuleContext {
 			listener.exitExpressionListElement(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitExpressionListElement) {
+			return visitor.visitExpressionListElement(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -14450,6 +15460,14 @@ export class EnhancedStatementExpressionContext extends GroovyParserRuleContext 
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitEnhancedStatementExpression) {
 			listener.exitEnhancedStatementExpression(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitEnhancedStatementExpression) {
+			return visitor.visitEnhancedStatementExpression(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14485,6 +15503,14 @@ export class CommandExprAltContext extends StatementExpressionContext {
 			listener.exitCommandExprAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitCommandExprAlt) {
+			return visitor.visitCommandExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -14510,6 +15536,14 @@ export class PostfixExpressionContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitPostfixExpression) {
 			listener.exitPostfixExpression(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitPostfixExpression) {
+			return visitor.visitPostfixExpression(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14548,6 +15582,14 @@ export class CastExprAltContext extends ExpressionContext {
 			listener.exitCastExprAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitCastExprAlt) {
+			return visitor.visitCastExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class PostfixExprAltContext extends ExpressionContext {
 	public postfixExpression(): PostfixExpressionContext {
@@ -14567,6 +15609,14 @@ export class PostfixExprAltContext extends ExpressionContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitPostfixExprAlt) {
 			listener.exitPostfixExprAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitPostfixExprAlt) {
+			return visitor.visitPostfixExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14593,6 +15643,14 @@ export class UnaryNotExprAltContext extends ExpressionContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitUnaryNotExprAlt) {
 			listener.exitUnaryNotExprAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitUnaryNotExprAlt) {
+			return visitor.visitUnaryNotExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14629,6 +15687,14 @@ export class PowerExprAltContext extends ExpressionContext {
 			listener.exitPowerExprAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitPowerExprAlt) {
+			return visitor.visitPowerExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class UnaryAddExprAltContext extends ExpressionContext {
 	public _op!: Token;
@@ -14653,6 +15719,14 @@ export class UnaryAddExprAltContext extends ExpressionContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitUnaryAddExprAlt) {
 			listener.exitUnaryAddExprAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitUnaryAddExprAlt) {
+			return visitor.visitUnaryAddExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14697,6 +15771,14 @@ export class MultiplicativeExprAltContext extends ExpressionContext {
 			listener.exitMultiplicativeExprAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitMultiplicativeExprAlt) {
+			return visitor.visitMultiplicativeExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class AdditiveExprAltContext extends ExpressionContext {
 	public _left!: ExpressionContext;
@@ -14730,6 +15812,14 @@ export class AdditiveExprAltContext extends ExpressionContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitAdditiveExprAlt) {
 			listener.exitAdditiveExprAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitAdditiveExprAlt) {
+			return visitor.visitAdditiveExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14794,6 +15884,14 @@ export class ShiftExprAltContext extends ExpressionContext {
 			listener.exitShiftExprAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitShiftExprAlt) {
+			return visitor.visitShiftExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class RelationalExprAltContext extends ExpressionContext {
 	public _left!: ExpressionContext;
@@ -14845,6 +15943,14 @@ export class RelationalExprAltContext extends ExpressionContext {
 			listener.exitRelationalExprAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitRelationalExprAlt) {
+			return visitor.visitRelationalExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class EqualityExprAltContext extends ExpressionContext {
 	public _left!: ExpressionContext;
@@ -14889,6 +15995,14 @@ export class EqualityExprAltContext extends ExpressionContext {
 			listener.exitEqualityExprAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitEqualityExprAlt) {
+			return visitor.visitEqualityExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class RegexExprAltContext extends ExpressionContext {
 	public _left!: ExpressionContext;
@@ -14928,6 +16042,14 @@ export class RegexExprAltContext extends ExpressionContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitRegexExprAlt) {
 			listener.exitRegexExprAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitRegexExprAlt) {
+			return visitor.visitRegexExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -14970,6 +16092,14 @@ export class AndExprAltContext extends ExpressionContext {
 			listener.exitAndExprAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitAndExprAlt) {
+			return visitor.visitAndExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class ExclusiveOrExprAltContext extends ExpressionContext {
 	public _left!: ExpressionContext;
@@ -15008,6 +16138,14 @@ export class ExclusiveOrExprAltContext extends ExpressionContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitExclusiveOrExprAlt) {
 			listener.exitExclusiveOrExprAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitExclusiveOrExprAlt) {
+			return visitor.visitExclusiveOrExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -15050,6 +16188,14 @@ export class InclusiveOrExprAltContext extends ExpressionContext {
 			listener.exitInclusiveOrExprAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitInclusiveOrExprAlt) {
+			return visitor.visitInclusiveOrExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class LogicalAndExprAltContext extends ExpressionContext {
 	public _left!: ExpressionContext;
@@ -15090,6 +16236,14 @@ export class LogicalAndExprAltContext extends ExpressionContext {
 			listener.exitLogicalAndExprAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitLogicalAndExprAlt) {
+			return visitor.visitLogicalAndExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class LogicalOrExprAltContext extends ExpressionContext {
 	public _left!: ExpressionContext;
@@ -15128,6 +16282,14 @@ export class LogicalOrExprAltContext extends ExpressionContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitLogicalOrExprAlt) {
 			listener.exitLogicalOrExprAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitLogicalOrExprAlt) {
+			return visitor.visitLogicalOrExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -15172,6 +16334,14 @@ export class ConditionalExprAltContext extends ExpressionContext {
 			listener.exitConditionalExprAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitConditionalExprAlt) {
+			return visitor.visitConditionalExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class MultipleAssignmentExprAltContext extends ExpressionContext {
 	public _left!: VariableNamesContext;
@@ -15207,6 +16377,14 @@ export class MultipleAssignmentExprAltContext extends ExpressionContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitMultipleAssignmentExprAlt) {
 			listener.exitMultipleAssignmentExprAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitMultipleAssignmentExprAlt) {
+			return visitor.visitMultipleAssignmentExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -15258,6 +16436,14 @@ export class AssignmentExprAltContext extends ExpressionContext {
 			listener.exitAssignmentExprAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitAssignmentExprAlt) {
+			return visitor.visitAssignmentExprAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -15297,6 +16483,14 @@ export class CommandExpressionContext extends GroovyParserRuleContext {
 			listener.exitCommandExpression(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitCommandExpression) {
+			return visitor.visitCommandExpression(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -15333,6 +16527,14 @@ export class CommandArgumentContext extends GroovyParserRuleContext {
 			listener.exitCommandArgument(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitCommandArgument) {
+			return visitor.visitCommandArgument(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -15367,6 +16569,14 @@ export class PathExpressionContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitPathExpression) {
 			listener.exitPathExpression(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitPathExpression) {
+			return visitor.visitPathExpression(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -15429,6 +16639,14 @@ export class PathElementContext extends GroovyParserRuleContext {
 			listener.exitPathElement(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitPathElementAsArgs) {
+			return visitor.visitPathElementAsArgs(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -15462,6 +16680,14 @@ export class NamePartContext extends GroovyParserRuleContext {
 			listener.exitNamePart(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitNamePart) {
+			return visitor.visitNamePart(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -15487,6 +16713,14 @@ export class DynamicMemberNameContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitDynamicMemberName) {
 			listener.exitDynamicMemberName(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitDynamicMemberName) {
+			return visitor.visitDynamicMemberName(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -15516,6 +16750,14 @@ export class IndexPropertyArgsContext extends GroovyParserRuleContext {
 			listener.exitIndexPropertyArgs(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitIndexPropertyArgs) {
+			return visitor.visitIndexPropertyArgs(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -15542,6 +16784,14 @@ export class NamedPropertyArgsContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitNamedPropertyArgs) {
 			listener.exitNamedPropertyArgs(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitNamedPropertyArgs) {
+			return visitor.visitNamedPropertyArgs(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -15580,6 +16830,14 @@ export class IdentifierPrmrAltContext extends PrimaryContext {
 			listener.exitIdentifierPrmrAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitIdentifierPrmrAlt) {
+			return visitor.visitIdentifierPrmrAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class LiteralPrmrAltContext extends PrimaryContext {
 	public literal(): LiteralContext {
@@ -15601,6 +16859,14 @@ export class LiteralPrmrAltContext extends PrimaryContext {
 			listener.exitLiteralPrmrAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitLiteralPrmrAlt) {
+			return visitor.visitLiteralPrmrAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class GstringPrmrAltContext extends PrimaryContext {
 	public gstring(): GstringContext {
@@ -15620,6 +16886,14 @@ export class GstringPrmrAltContext extends PrimaryContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitGstringPrmrAlt) {
 			listener.exitGstringPrmrAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitGstringPrmrAlt) {
+			return visitor.visitGstringPrmrAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -15647,6 +16921,14 @@ export class NewPrmrAltContext extends PrimaryContext {
 			listener.exitNewPrmrAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitNewPrmrAlt) {
+			return visitor.visitNewPrmrAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class ThisPrmrAltContext extends PrimaryContext {
 	public THIS(): TerminalNode { return this.getToken(GroovyParser.THIS, 0); }
@@ -15666,6 +16948,14 @@ export class ThisPrmrAltContext extends PrimaryContext {
 			listener.exitThisPrmrAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitThisPrmrAlt) {
+			return visitor.visitThisPrmrAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class SuperPrmrAltContext extends PrimaryContext {
 	public SUPER(): TerminalNode { return this.getToken(GroovyParser.SUPER, 0); }
@@ -15683,6 +16973,14 @@ export class SuperPrmrAltContext extends PrimaryContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitSuperPrmrAlt) {
 			listener.exitSuperPrmrAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitSuperPrmrAlt) {
+			return visitor.visitSuperPrmrAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -15706,6 +17004,14 @@ export class ParenPrmrAltContext extends PrimaryContext {
 			listener.exitParenPrmrAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitParenPrmrAlt) {
+			return visitor.visitParenPrmrAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class ClosureOrLambdaExpressionPrmrAltContext extends PrimaryContext {
 	public closureOrLambdaExpression(): ClosureOrLambdaExpressionContext {
@@ -15725,6 +17031,14 @@ export class ClosureOrLambdaExpressionPrmrAltContext extends PrimaryContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitClosureOrLambdaExpressionPrmrAlt) {
 			listener.exitClosureOrLambdaExpressionPrmrAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitClosureOrLambdaExpressionPrmrAlt) {
+			return visitor.visitClosureOrLambdaExpressionPrmrAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -15748,6 +17062,14 @@ export class ListPrmrAltContext extends PrimaryContext {
 			listener.exitListPrmrAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitListPrmrAlt) {
+			return visitor.visitListPrmrAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class MapPrmrAltContext extends PrimaryContext {
 	public map(): MapContext {
@@ -15769,6 +17091,14 @@ export class MapPrmrAltContext extends PrimaryContext {
 			listener.exitMapPrmrAlt(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitMapPrmrAlt) {
+			return visitor.visitMapPrmrAlt(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 export class BuiltInTypePrmrAltContext extends PrimaryContext {
 	public builtInType(): BuiltInTypeContext {
@@ -15788,6 +17118,14 @@ export class BuiltInTypePrmrAltContext extends PrimaryContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitBuiltInTypePrmrAlt) {
 			listener.exitBuiltInTypePrmrAlt(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitBuiltInTypePrmrAlt) {
+			return visitor.visitBuiltInTypePrmrAlt(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -15823,6 +17161,14 @@ export class ListContext extends GroovyParserRuleContext {
 			listener.exitList(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitList) {
+			return visitor.visitList(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -15849,6 +17195,14 @@ export class MapContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitMap) {
 			listener.exitMap(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitMap) {
+			return visitor.visitMap(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -15890,6 +17244,14 @@ export class MapEntryListContext extends GroovyParserRuleContext {
 			listener.exitMapEntryList(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitMapEntryList) {
+			return visitor.visitMapEntryList(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -15924,6 +17286,14 @@ export class MapEntryContext extends GroovyParserRuleContext {
 			listener.exitMapEntry(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitMapEntry) {
+			return visitor.visitMapEntry(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -15953,6 +17323,14 @@ export class MapEntryLabelContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitMapEntryLabel) {
 			listener.exitMapEntryLabel(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitMapEntryLabel) {
+			return visitor.visitMapEntryLabel(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -16006,6 +17384,14 @@ export class CreatorContext extends GroovyParserRuleContext {
 			listener.exitCreator(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitCreator) {
+			return visitor.visitCreator(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -16033,6 +17419,14 @@ export class DimContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitDim) {
 			listener.exitDim(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitDim) {
+			return visitor.visitDim(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -16070,6 +17464,14 @@ export class ArrayInitializerContext extends GroovyParserRuleContext {
 			listener.exitArrayInitializer(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitArrayInitializer) {
+			return visitor.visitArrayInitializer(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -16094,6 +17496,14 @@ export class AnonymousInnerClassDeclarationContext extends GroovyParserRuleConte
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitAnonymousInnerClassDeclaration) {
 			listener.exitAnonymousInnerClassDeclaration(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitAnonymousInnerClassDeclaration) {
+			return visitor.visitAnonymousInnerClassDeclaration(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -16127,6 +17537,14 @@ export class CreatedNameContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitCreatedName) {
 			listener.exitCreatedName(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitCreatedName) {
+			return visitor.visitCreatedName(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -16164,6 +17582,14 @@ export class NonWildcardTypeArgumentsContext extends GroovyParserRuleContext {
 			listener.exitNonWildcardTypeArguments(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitNonWildcardTypeArguments) {
+			return visitor.visitNonWildcardTypeArguments(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -16188,6 +17614,14 @@ export class TypeArgumentsOrDiamondContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitTypeArgumentsOrDiamond) {
 			listener.exitTypeArgumentsOrDiamond(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitTypeArgumentsOrDiamond) {
+			return visitor.visitTypeArgumentsOrDiamond(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -16217,6 +17651,14 @@ export class ArgumentsContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitArguments) {
 			listener.exitArguments(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitArguments) {
+			return visitor.visitArguments(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -16271,6 +17713,14 @@ export class EnhancedArgumentListInParContext extends GroovyParserRuleContext {
 			listener.exitEnhancedArgumentListInPar(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitEnhancedArgumentListInPar) {
+			return visitor.visitEnhancedArgumentListInPar(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -16307,6 +17757,14 @@ export class EnhancedArgumentListElementContext extends GroovyParserRuleContext 
 			listener.exitEnhancedArgumentListElement(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitEnhancedArgumentListElement) {
+			return visitor.visitEnhancedArgumentListElement(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -16329,6 +17787,14 @@ export class StringLiteralContext extends GroovyParserRuleContext {
 			listener.exitStringLiteral(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitStringLiteral) {
+			return visitor.visitStringLiteral(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -16349,6 +17815,14 @@ export class ClassNameContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitClassName) {
 			listener.exitClassName(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitClassName) {
+			return visitor.visitClassName(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -16378,6 +17852,14 @@ export class IdentifierContext extends GroovyParserRuleContext {
 			listener.exitIdentifier(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitIdentifier) {
+			return visitor.visitIdentifier(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -16399,6 +17881,14 @@ export class BuiltInTypeContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitBuiltInType) {
 			listener.exitBuiltInType(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitBuiltInType) {
+			return visitor.visitBuiltInType(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -16473,6 +17963,14 @@ export class KeywordsContext extends GroovyParserRuleContext {
 			listener.exitKeywords(this);
 		}
 	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitKeywords) {
+			return visitor.visitKeywords(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
 }
 
 
@@ -16493,6 +17991,14 @@ export class RparenContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitRparen) {
 			listener.exitRparen(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitRparen) {
+			return visitor.visitRparen(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -16523,6 +18029,14 @@ export class NlsContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitNls) {
 			listener.exitNls(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitNls) {
+			return visitor.visitNls(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }
@@ -16562,6 +18076,14 @@ export class SepContext extends GroovyParserRuleContext {
 	public exitRule(listener: GroovyParserListener): void {
 		if (listener.exitSep) {
 			listener.exitSep(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: GroovyParserVisitor<Result>): Result {
+		if (visitor.visitSep) {
+			return visitor.visitSep(this);
+		} else {
+			return visitor.visitChildren(this);
 		}
 	}
 }

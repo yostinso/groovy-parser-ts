@@ -16,10 +16,6 @@
 
 import groovy.json.*
 	
-app?.dang.updateLabel(app.name)
-purps {
-	call(it: 1)
-}
 definition(
 	parent: 	"joelwetzel:Switch Bindings",
     name: 		"Switch Binding Instance",
@@ -69,7 +65,7 @@ def mainPage() {
 			}
             
 			input(name:	"masterSwitchId",	type: "enum", title: "Select an (optional) 'Master' switch", multiple: false, required: false, submitOnChange: true, options: (masterChoices))
-			def masterSwitch = null
+			def masterSwitch 
             if (masterSwitchId != null) {
                 masterSwitch = settings?.switches?.find { it?.deviceId?.toString() == settings?.masterSwitchId.toString() }
             }

@@ -21,6 +21,24 @@
             ],
             "console": "internalConsole",
             "outputCapture": "std"
+        },
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "Parse Current File for functions",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/bin/antlr-groovy.ts",
+            "args": [
+                "findMethods",
+                "${workspaceFolder}/test/debug.groovy"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "console": "internalConsole",
+            "outputCapture": "std"
         }
     ]
 }
