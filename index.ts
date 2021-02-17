@@ -1,12 +1,9 @@
 import { CharStreams, CommonTokenStream } from "antlr4ts";
-import { AbstractParseTreeVisitor } from "antlr4ts/tree/AbstractParseTreeVisitor";
 import { GroovyLangLexer as GroovyLexer } from "./GroovyLangLexer";
-import { ArgumentsContext, CommandArgumentContext, CommandExprAltContext, CommandExpressionContext, CompilationUnitContext, GroovyParser, MethodDeclarationContext, StatementContext } from "./parsers/GroovyParser";
 import { GroovyParserVisitor } from "./parsers/GroovyParserVisitor";
 import { GroovyParserListener } from "./parsers/GroovyParserListener";
-import { ParseTree } from "antlr4ts/tree/ParseTree";
-import AstBuilder from "./ast/AstBuilder";
 import MinimalAstBuilder from "./ast/MinimalAstBuilder";
+import { GroovyParser } from "./parsers/GroovyParser";
 
 function createTree(text: string): any {
     const lexer = parseText(text);
